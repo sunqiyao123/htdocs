@@ -1,0 +1,56 @@
+{
+    "musicData": [{
+      "title": "我要你",
+      "author": "老狼",
+      "src": "http://up.mcyt.net/md5/53/OTkwNzUxMQ_Qq4329912.mp3",
+      "musicImgSrc": "http://omratag7g.bkt.clouddn.com/%E6%88%91%E8%A6%81%E4%BD%A0.jpg",
+      "lrc": "lrc/我要你.lrc"
+    }, {
+      "title": "就是爱你",
+      "author": "陶喆",
+      "src": "http://up.mcyt.net/md5/53/MTAzMTM1_Qq4329912.mp3",
+      "musicImgSrc": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1407964657,2382644691&fm=58",
+      "lrc": "lrc/就是爱你.lrc"
+    }, {
+      "title": "十年",
+      "author": "陈奕迅",
+      "src": "http://up.mcyt.net/md5/53/ODA0MDM=_Qq4329912.mp3",
+      "musicImgSrc": "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3825361386,3954933951&fm=58",
+      "lrc": "lrc/十年.lrc"
+    }, {
+      "title": "刚好遇见你",
+      "author": "李玉刚",
+      "src": "http://up.mcyt.net/md5/53/OTk1MDE2NA_Qq4329912.mp3",
+      "musicImgSrc": "http://p4.music.126.net/lDyytkTaPYVTb1Vpide6AA==/18591642115187138.jpg",
+      "lrc": "lrc/刚好遇见你-李玉刚.lrc"
+    },
+    {
+      "title": "一天一天",
+      "author": "BIGBANG",
+      "src": "http://up.mcyt.net/md5/53/NDAwODUy_Qq4329912.mp3",
+      "musicImgSrc": "http://oeff2vktt.bkt.clouddn.com/image/46.jpg",
+      "lrc": ""
+    },
+    {
+      "title": "我的天空",
+      "author": "陈姿彤",
+      "src": "http://up.mcyt.net/md5/53/NTQ5Njg4NA_Qq4329912.mp3",
+      "musicImgSrc": "http://oeff2vktt.bkt.clouddn.com/image/1.jpg",
+      "lrc": ""
+    },
+    {
+      "title": "小幸运",
+      "author": "田馥甄",
+      "src": "http://up.mcyt.net/md5/53/NjUxNTA1Mw_Qq4329912.mp3",
+      "musicImgSrc": "http://oeff2vktt.bkt.clouddn.com/image/40.jpg",
+      "lrc": ""
+    },
+    {
+      "title": "不分手的恋爱",
+      "author": "汪苏泷",
+      "src": "http://up.mcyt.net/md5/53/OTQ1MzIw_Qq4329912.mp3",
+      "musicImgSrc": "http://oeff2vktt.bkt.clouddn.com/image/89.jpg",
+      "lrc": ""
+    }
+  ]
+}
