@@ -23,7 +23,7 @@ if(isset($_POST['sub'])){
     }
     else{
         echo "<script>alert('上传成功');</script>";
-        $a=move_uploaded_file($sfile['tmp_name'],"./upload/b.png");
+        $a=move_uploaded_file($sfile['tmp_name'],"./upload/c.png");
         if($a){
             echo "<script>alert('上传成功并移动成功');</script>";
         }

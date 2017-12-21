@@ -1,4 +1,15 @@
 <?php
+if(!isset($_COOKIE['uid'])){
+    $url=$_SERVER['REQUEST_URI'];
+    $arr=explode('/',$url);
+    $le=count($arr)-1;
+    $urlname=$arr[$le];
+
+    echo "<script>location='login.php?url=$urlname'</script>";
+}
+
+?>
+<?php
 //先连接数据库
     include "conn.php";
     if(isset($_POST['sub'])){
@@ -8,7 +19,7 @@
 
         //操作数据库插入数据
     //    $sql="insert into blog(bid,title,content,time) values(null,'$title','$con','$date')";
-        $sql="insert into blog(bid,title,content,time) values(null,'$title','$con',now())";
+        $sql="insert into blog(bid,title,content,time) values(null,'$title','$con',now())";//数据库函数
         //发送这个字符串
         $query=mysqli_query($link,$sql);
         if($query){

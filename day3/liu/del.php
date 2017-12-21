@@ -1,6 +1,6 @@
 <?php
     include "conn.php";
-    if(isset($_GET['id'])){
+    if(isset($_GET['a'])){
         $id=$_GET['id'];
         $sql="delete from blog where bid='$id'";
         $query=mysqli_query($link,$sql);
