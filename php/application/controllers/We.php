@@ -23,9 +23,8 @@ class We extends CI_Controller {
 		$this->load->view('reg');
 	}
     public function add(){
-        $name = $this->input->post('username');
-
         $this->load->model('a');
+        $name = $this->input->post('username');
         $row = $this->a->add($name);
         if($row > 0){
             echo 'success';
@@ -43,6 +42,9 @@ class We extends CI_Controller {
         $rows=$this->a->del_list($id);
         if($rows > 0){
             redirect('We/user_list');
+        }
+        else{
+            echo '删除失败';
         }
     }
     public function update_user($id){
@@ -63,3 +65,12 @@ class We extends CI_Controller {
         }
     }
 }
+/*C接收V发过来的数据：
+$this -> input -> post("login");//get()
+跳转到view：
+$this->load->view('list', array("list" => $user_list));
+调用M：
+$this -> load -> model("user_model");
+$this -> user_model -> get_by_username($username);
+重定向：
+redirect("user/index");*/
