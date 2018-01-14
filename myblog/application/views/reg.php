@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="assets/css/thickbox.css" type="text/css" media="screen">
   <link rel="stylesheet" href="assets/css/osc-popup.css" type="text/css" media="screen">
   <script type="text/javascript" src="assets/js/jquery-1.11.2.js"></script>
-<!--  <script type="text/javascript" src="assets/js/jquery.js"></script>-->
   <script type="text/javascript" src="assets/js/thickbox.js"></script>
   <script type="text/javascript" src="assets/js/common.js"></script>
   <style type="text/css">
@@ -116,15 +115,14 @@
     	<tr>
     		<th>验证码：</th>		
     		<td><input id="f_vcode" name="verifyCode" size="6" class="TEXT" type="text">
-			<span><a href="javascript:_rvi()">换另外一个图</a></span>
+			<span><a href="javascript:;" id="change-code">换另外一个图</a></span>
 			</td>
     	</tr>
 		<tr>
-    		<th>&nbsp;</th>		
-			<td>
-			<img id="img_vcode" alt="..." src="assets/images/captcha.png" style="border: 2px solid rgb(204, 204, 204);" align="absmiddle">
-            <script language="javascript">function _rvi(){document.getElementById('img_vcode').src = '/action/user/captcha?t='+Math.random(1000);}</script>
-			</td>
+            <th>&nbsp;</th>
+            <td id="show-code">
+                <?php echo $img?>
+            </td>
 		</tr>
     	<tr class="buttons">
     		<th>&nbsp;</th>		
@@ -151,6 +149,11 @@
 </div>
 <script type="text/javascript">
     $(function(){
+        $('#change-code').on('click',function(){
+            $.get('user/change_code',{},function(data){
+                $('#show-code').html(data);
+            },'text');
+        });
         $('#f_email').on('blur',function(){
             var email = $(this).val();
             $.get('user/check_email',{
@@ -172,6 +175,7 @@
             var pwd2 = $('#f_pwd2').val();
             var province = $('#userProvince').val();
             var city = $('#userCity').val();
+            var code = $('#f_vcode').val();
             $.get('user/add_user',{
                 email:email,
                 name:name,
@@ -179,13 +183,19 @@
                 pwd:pwd,
                 pwd2:pwd2,
                 province:province,
-                city:city
+                city:city,
+                code:code
             },function(data){
                 if(data == 'pwd-error'){
                     $('#error_msg').html("两次密码不一致");
                     $('#error_msg').show("fast");
-                }else{
-                    location.href = 'user/login';
+                }
+                else if(data == 'code-error'){
+                    $('#error_msg').html("验证码不一致");
+                    $('#error_msg').show("fast");
+                }
+                else{
+                    location.href = 'user/auto_login?email=' + email;
                 }
 
             },'text');
