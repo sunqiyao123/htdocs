@@ -65,7 +65,6 @@
 					?><?php }?>的博客</strong>
 				<div>
 					<a href="We/index_login">TA的博客列表</a>&nbsp;
-
 					</span>
 				</div>
 			</div>

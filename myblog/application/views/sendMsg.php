@@ -51,10 +51,10 @@
 	<div id="OSC_Content"><div class="SpaceChannel">
 	<div id="portrait"><a href="#"><img src="assets/images/portrait.gif" alt="Johnny" title="Johnny" class="SmallPortrait" user="154693" align="absmiddle"></a></div>
     <div id="lnks">
-		<strong>Johnny的博客</strong>
+		<strong><?php echo $autor->username?>的博客</strong>
 		<div>
-			<a href="index.htm">TA的博客列表</a>&nbsp;|
-			<a href="javascript:sendmsg(154693)">发送留言</a>
+			<a href="We/index_login">TA的博客列表</a>&nbsp;|
+			<a href="#">发送留言</a>
 </span>
 		</div>
 	</div>
@@ -138,10 +138,11 @@
 #OSChinaLoginTip ul li a:hover {border:1px solid #40AA53;background:#cfc;}
 </style>
 <div id="AjaxBox">
-	<h2 id="Title">发送留言给 <u>Johnny</u></h2>
+	<h2 id="Title">发送留言给 <u><?php echo $autor->username?></u></h2>
 	<div id="Content"><div id="s_error_msg" class="error_msg"></div>
 <div id="s_success_msg" class="success_msg"></div>
-<form id="frm_sendmsg" action="sendMsgOK.htm" method="POST">
+<form id="frm_sendmsg" action="We/send_msg_ok" method="POST">
+	<input type="hidden" name="autorId" value="<?php echo $autor->user_id?>">
 <table>
 <tbody><tr><td class="heading">留言内容(最多250个字): </td></tr>
 <tr><td><textarea id="ta_msg_content" name="content" style="width: 400px; height: 120px; padding: 2px; overflow: hidden;"></textarea></td></tr>

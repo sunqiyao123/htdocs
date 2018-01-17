@@ -44,12 +44,12 @@
 	<?php }?>
 				<span id="OSC_Notification">
 			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
-																				</span>
-    </div>
+				</span>
+</div>
 		<div id="SearchBar">
     		<form action="#">
-								<input name="user" value="154693" type="hidden">
-																								<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
+				<input name="user" value="154693" type="hidden">
+				<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text"
 				<input class="SUBMIT" value="搜索" type="submit">
     		</form>
 		</div>
@@ -58,13 +58,13 @@
 	<div id="OSC_Content">
 <div id="AdminScreen">
     <div id="AdminPath">
-        <a href="index_logined.htm">返回我的首页</a>&nbsp;»
+        <a href="We/index_logined">返回我的首页</a>&nbsp;»
     	<span id="AdminTitle">发表博客</span>
     </div>
     <div id="AdminMenu"><ul>
 	<li class="caption">个人信息管理		
 		<ol>
-			<li><a href="inbox.htm">站内留言(0/1)</a></li>
+			<li><a href="We/inbox">站内留言(0/1)</a></li>
 			<li><a href="profile.htm">编辑个人资料</a></li>
 			<li><a href="chpwd.htm">修改登录密码</a></li>
 			<li><a href="userSettings.htm">网页个性设置</a></li>
@@ -74,10 +74,10 @@
 <ul>
 	<li class="caption">博客管理	
 		<ol>
-			<li class="current"><a href="newBlog.htm">发表博客</a></li>
-			<li><a href="blogCatalogs.htm">博客设置/分类管理</a></li>
-			<li><a href="blogs.htm">文章管理</a></li>
-			<li><a href="blogComments.htm">博客评论管理</a></li>
+			<li class="current"><a href="user/new_blog">发表博客</a></li>
+			<li><a href="We/blog_catalogs">博客设置/分类管理</a></li>
+			<li><a href="We/blogs">文章管理</a></li>
+			<li><a href="We/blog_comments">博客评论管理</a></li>
 		</ol>
 	</li>
 </ul>
@@ -97,7 +97,7 @@
 				  <option selected="selected" value="<?php echo $type->type_id?>"><?php echo $type->type_name?></option>
 			  <?php }?>
 		  </select>
-		  <a href="blogCatalogs.htm" onclick="return confirm('是否放弃当前编辑进入分类管理？');">分类管理»</a>
+		  <a href="We/blogs" onclick="return confirm('是否放弃当前编辑进入分类管理？');">分类管理»</a>
 	  </td>
   </tr>
   <tr><td class='t'>内容（必填） 

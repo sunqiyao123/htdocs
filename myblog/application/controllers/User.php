@@ -31,10 +31,6 @@ class User extends CI_Controller
     {
         $this->load->view('adminIndex');
     }
-    public function send_msg()
-    {
-        $this->load->view('sendMsg');
-    }
     public function captcha()
     {
         $this->load->helper('captcha');

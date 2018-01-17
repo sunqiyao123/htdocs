@@ -2,9 +2,9 @@
 <html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Language" content="zh-CN">
-  <title>Johnny的博客 - SYSIT个人博客</title>
+  <title>博客文章管理 Johnny的博客 - SYSIT个人博客</title>
 	<base href="<?php echo site_url();?>">
-      <link rel="stylesheet" href="assets/css/space2011.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="assets/css/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="assets/css/jquery.css" media="screen">
   <script type="text/javascript" src="assets/js/jquery-1.11.2.js"></script>
   <script type="text/javascript" src="assets/js/oschina.js"></script>
@@ -30,10 +30,10 @@
 				<li><a href="#" class="project"><?php if(isset($user)){echo $user->mood;}?></a></li>
 			</ul>
 		</div>
-    <div class="clear"></div>
+		<div class="clear"></div>
 </div><!-- #EndLibraryItem --><div id="OSC_Topbar">
 	  <div id="VisitorInfo">
-		当前访客身份：
+		  当前访客身份：
 		  <?php
 		  if(isset($user)){
 			  echo $user->username;
@@ -42,16 +42,16 @@
 		  <?php }else{?>
 			  游客 [ <a href="user/login">登录</a> | <a href="user/reg">注册</a> ]
 		  <?php }?>
-				<span id="OSC_Notification">
+		  <span id="OSC_Notification">
 			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
-    </div>
+	  </div>
 		<div id="SearchBar">
-    		<form action="#">
+			<form action="#">
 				<input name="user" value="154693" type="hidden">
-				<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text"
+				<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">
-    		</form>
+			</form>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -59,7 +59,7 @@
 <div id="AdminScreen">
     <div id="AdminPath">
         <a href="We/index_logined">返回我的首页</a>&nbsp;»
-    	<span id="AdminTitle">管理首页</span>
+    	<span id="AdminTitle">博客文章管理</span>
     </div>
     <div id="AdminMenu"><ul>
 	<li class="caption">个人信息管理		
@@ -74,75 +74,92 @@
 <ul>
 	<li class="caption">博客管理	
 		<ol>
-			<li><a href="user/new_blog">发表博客</a></li>
-			<li><a href="We/blog_catalogs">博客分类管理</a></li>
+			<li class="current"><a href="user/new_blog">发表博客</a></li>
+			<li><a href="We/blog_catalogs">博客设置/分类管理</a></li>
 			<li><a href="We/blogs">文章管理</a></li>
-			<li><a href="We/blog_comments">网友评论管理</a></li>
+			<li><a href="We/blog_comments">博客评论管理</a></li>
 		</ol>
 	</li>
 </ul>
 </div>
     <div id="AdminContent">
-<p style="margin-top:150px;text-align:center;color:#666;">欢迎来到个人空间管理页面，请从左边菜单中选择</p></div>
+<div class="MainForm BlogArticleManage">
+<!-- <h3 class="title">共有 3 篇博客，每页显示 40 个，共 1 页</h3>-->
+    <div id="BlogOpts">
+	<a href="javascript:;" onclick="select_all();">全选</a>&nbsp;|
+	<a href="javascript:;" onclick="unselect_all();">取消</a>&nbsp;|
+	<a href="javascript:;" onclick="select_other();">反向选择</a>&nbsp;|
+	<a href="javascript:;" id="del_checked">删除选中</a>
+  </div>
+    <ul>
+		<?php foreach ($list as $article){?>
+	<li class="row_1">
+		<input name="blog" value="<?php echo $article->article_id?>" type="checkbox">
+		<a href="viewPost_comment.htm" target="_blank"><?php echo $article->title?></a>
+		<small><?php echo $article->post_date?></small>
+	</li>
+		<?php }?>
+	  </ul>
+	<?php echo $links?>
+    </div>
+<script type="text/javascript">
+	$('#del_checked').on('click',function(){
+		var box = $(":checked");
+		var ids = [];
+		for(var i=0;i < box.length;i++){
+			ids.push($(box[i]).val());
+		}
+		$.get('We/del_article',{
+			ids:ids
+		},function(data){
+			if(data == 'success'){
+				location.href = 'We/blogs';
+			}
+		},'text');
+
+	});
+
+
+
+function select_all(){
+
+		$("input[name='blog']").attr("checked", true);
+
+}
+function unselect_all(){
+	$("input[name='blog']").attr("checked", false); 
+}
+function select_other(){
+	jQuery.each($("input[name='blog']"), function(i, n){
+		n.checked = !n.checked;
+	}); 
+}
+function delete_sel(){
+	var blogids = "";
+	jQuery.each($("input[name='blog']"), function(i, n){
+		if(n.checked){
+			blogids += $(this).val()+",";
+		}
+	});
+	if(blogids.length > 0){
+		if(!confirm("确认要删除选中的文章吗？")) return ;
+		ajax_post("/action/blog/batch_delete","id="+blogids,function(html){
+			location.reload();
+		});
+	}
+	else
+		alert("请选择要删除的文章");
+}
+</script></div>
 	<div class="clear"></div>
 </div>
 <script type="text/javascript">
-<!--
-$(document).ready(function() {
-	$('#AdminTitle').text('管理首页');
-});
-$('.AutoCommitForm').ajaxForm({
-    success: function(html) {	
-		$('#error_msg').hide();
-		if(html.length>0)
-			$('#error_msg').html("<span class='error_msg'>"+html+"</span>");
-		else
-			$('#error_msg').html("<span class='ok_msg'>操作已成功完成</span>")
-		$('#error_msg').show("fast");
-    }
-});
-$('.AutoCommitJSONForm').ajaxForm({
-	dataType: 'json',
-    success: function(json) {	
-		$('#error_msg').hide();
-		if(json.error==0){
-			if(json.msg)
-				$('#error_msg').html("<span class='ok_msg'>"+json.msg+"</span>");
-			else
-				$('#error_msg').html("<span class='ok_msg'>操作已成功完成</span>");
-		}
-		else {
-			if(json.msg)
-				$('#error_msg').html("<span class='error_msg'>"+json.msg+"</span>");
-			else
-				$('#error_msg').html("<span class='error_msg'>操作已成功完成</span>");
-		}
-		$('#error_msg').show("fast");
-    }
-});
-//-->
 </script>
 </div>
 	<div class="clear"></div>
 	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)</div>
 </div>
-<script type="text/javascript" src="assets/js/space.htm" defer="defer"></script>
+<script type="text/javascript" src="js/space.htm" defer="defer"></script>
 <script type="text/javascript">
-<!--
-$(document).ready(function() {
-	$('a.fancybox').fancybox({titleShow:false});
-});
-
-function pay_attention(pid,concern_it){
-	if(concern_it){
-		$("#p_attention_count").load("/action/favorite/add?mailnotify=true&type=3&id="+pid);
-		$('#attention_it').html('<a href="javascript:pay_attention('+pid+',false)" style="color:#A00;">取消关注</a>');	
-	}
-	else{
-		$("#p_attention_count").load("/action/favorite/cancel?type=3&id="+pid);
-		$('#attention_it').html('<a href="javascript:pay_attention('+pid+',true)" style="color:#3E62A6;">关注此文章</a>');
-	}
-}
-//-->
 </script>
 </body></html>
